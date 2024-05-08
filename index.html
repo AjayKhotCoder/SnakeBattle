@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake Battle</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+  <script src="/socket.io/socket.io.js"></script> <!-- Ensure this points to your back-end's Socket.IO -->
+  <script src="index.js"></script> <!-- Your custom front-end script -->
+  <style>
+    body {
+      background: center / cover no-repeat url('https://cdn.pixabay.com/photo/2023/10/09/15/12/funny-8304305_960_720.jpg'); /* Apply the background image */
+    }
+    #gameScreen {
+      display: flex; /*Flexbox for centering */
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+     
+    }
+    .heading-color {
+      color: rgb(13, 13, 13);
+    }
+    .scoreboard {
+      color: white;
+      text-align: center;
+    }
+    .centered-input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* .back {
+      background: center / contain no-repeat url("images/snakes.jpg"), #eee;} */
+    
+  </style>
+</head>
+<body>
+  <section class="vh-100"> <!-- Full height section -->
+    <div class="px-5 h-100"> <!-- Padding and full height -->
+      <!-- Initial Screen: Create or Join a Game -->
+      <div id="initialScreen" class="h-100 centered-input"> <!-- Centered layout -->
+        <div class="d-flex flex-column align-items-center justify-content-center h-50 mt-5 card back">
+          <h1 class="heading-color">Snake Battle</h1> <!-- Title with color -->
+
+          <!-- Player Name Input -->
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            id="playerNameInput"
+            class="form-control mb-3"
+            style="max-width: 300px";
+          />
+
+          <div class="row">
+            <div class="col-5">
+              <button type="button" class="btn btn-primary btn-sm" id="newGameButton">Create New Game</button> <!-- Button to create a new game -->
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <input type="text" placeholder="Enter Game Code" id="gameCodeInput" class="form-control" style="max-width: 300px;" /> <!-- Input for game code -->
+              </div>
+              <button type="button" class="btn btn-primary" id="joinGameButton">Join Game</button> <!-- Button to join an existing game -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Screen: After Creating or Joining a Game -->
+      <div id="gameScreen" class="h-100">
+             <div class="scoreboard"> <!-- Display the scoreboard -->
+            <h1 class="heading-color">Your game code is: <span id="gameCodeDisplay"></span></h1>
+            <h2 id="playerOneName">Player 1:<span id="playerNameInput" ></span></h2> <!-- Player 1 name -->
+            <h2 id="playerTwoName">Player 2: <span id="playerNameInput"></span></h2> <!-- Player 2 name -->
+            <h3 id="playerOneScore">Player 1 Score: 0</h3> <!-- Player 1 score -->
+            <h3 id="playerTwoScore">Player 2 Score: 0</h3> <!-- Player 2 score -->
+          
+        </div>
+        <canvas id="canvas" width="600" height="600"></canvas> <!-- The game canvas -->
+      </div>
+    </div>
+  </section>
+</body>
+</html>
